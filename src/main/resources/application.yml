@@ -1,0 +1,7 @@
+#Database Configuration
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spacial_probe
+    username: postgres
+    password: postgres
