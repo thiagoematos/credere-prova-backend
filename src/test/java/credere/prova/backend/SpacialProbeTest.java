@@ -88,7 +88,7 @@ public class SpacialProbeTest {
 
                 // then
                 .andExpect(status().isExpectationFailed())
-                .andExpect(status().reason(containsString("Um movimento inválido foi detectado, infelizmente a spacial_probe ainda não possui a habilidade de ir até (6, 0)")));
+                .andExpect(status().reason(containsString("Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de ir até (6, 0)")));
     }
 
     @Test
