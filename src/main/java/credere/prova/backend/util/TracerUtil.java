@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static credere.prova.backend.util.StringUtil.replaceLast;
-import static java.lang.String.join;
+import static credere.prova.backend.util.Sentence.format;
 
 public class TracerUtil {
 
@@ -23,16 +22,8 @@ public class TracerUtil {
     }
 
     public void log() {
-        var message = separateLastItem(separateByComma());
-        logger.info("a sonda " + message);
-    }
-
-    private String separateByComma() {
-        return join(", ", trace);
-    }
-
-    private String separateLastItem(String result) {
-        return replaceLast(", ", " e ", result);
+        var message = format(trace);
+        logger.info(String.format("a sonda %s", message));
     }
 
 }
