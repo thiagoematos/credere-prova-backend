@@ -2,7 +2,7 @@ package credere.prova.backend.controller;
 
 import credere.prova.backend.exception.InvalidMovementException;
 import credere.prova.backend.model.Movements;
-import credere.prova.backend.model.Status;
+import credere.prova.backend.model.SpacialProbe;
 import credere.prova.backend.service.SpacialProbeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class SpacialProbeController {
     private SpacialProbeService service;
 
     @GetMapping
-    public Status current() {
+    public SpacialProbe current() {
         return service.getCurrent();
     }
 

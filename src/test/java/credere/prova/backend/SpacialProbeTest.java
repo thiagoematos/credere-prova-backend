@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import credere.prova.backend.model.Face;
 import credere.prova.backend.model.Movement;
 import credere.prova.backend.model.Movements;
-import credere.prova.backend.model.Status;
+import credere.prova.backend.model.SpacialProbe;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -110,7 +110,7 @@ public class SpacialProbeTest {
         // then
         this.mvc.perform(get("/posicao"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(new Status(1, 0, Face.D))));
+                .andExpect(content().json(objectMapper.writeValueAsString(new SpacialProbe(1, 0, Face.D))));
     }
 
     @Test
@@ -135,7 +135,7 @@ public class SpacialProbeTest {
         // then
         this.mvc.perform(get("/posicao"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(new Status(2, 3, Face.D))));
+                .andExpect(content().json(objectMapper.writeValueAsString(new SpacialProbe(2, 3, Face.D))));
     }
 
     @Test
@@ -163,7 +163,7 @@ public class SpacialProbeTest {
         // then
         this.mvc.perform(get("/posicao"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(new Status(0, 0, Face.D))));
+                .andExpect(content().json(objectMapper.writeValueAsString(new SpacialProbe(0, 0, Face.D))));
     }
 
 }

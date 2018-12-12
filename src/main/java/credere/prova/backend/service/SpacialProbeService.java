@@ -4,7 +4,7 @@ import credere.prova.backend.exception.InvalidMovementException;
 import credere.prova.backend.model.Face;
 import credere.prova.backend.model.Movement;
 import credere.prova.backend.model.Movements;
-import credere.prova.backend.model.Status;
+import credere.prova.backend.model.SpacialProbe;
 import credere.prova.backend.util.TracerUtil;
 import org.springframework.stereotype.Service;
 
@@ -15,41 +15,41 @@ import java.util.function.Function;
 @Service
 public class SpacialProbeService {
 
-    private static final Map<Face, Consumer<Status>> FORWARD_OPERATION =
+    private static final Map<Face, Consumer<SpacialProbe>> FORWARD_OPERATION =
             Map.of(
                     Face.E, (status) -> status.setX(status.getX() - 1),
                     Face.D, (status) -> status.setX(status.getX() + 1),
                     Face.B, (status) -> status.setY(status.getY() - 1),
                     Face.C, (status) -> status.setY(status.getY() + 1)
             );
-    private static final Map<Face, Consumer<Status>> TURN_RIGHT_OPERATION =
+    private static final Map<Face, Consumer<SpacialProbe>> TURN_RIGHT_OPERATION =
             Map.of(
                     Face.E, (status) -> status.setFace(Face.C),
                     Face.C, (status) -> status.setFace(Face.D),
                     Face.D, (status) -> status.setFace(Face.B),
                     Face.B, (status) -> status.setFace(Face.E)
             );
-    private static final Map<Face, Consumer<Status>> TURN_LEFT_OPERATION =
+    private static final Map<Face, Consumer<SpacialProbe>> TURN_LEFT_OPERATION =
             Map.of(
                     Face.E, (status) -> status.setFace(Face.B),
                     Face.B, (status) -> status.setFace(Face.D),
                     Face.D, (status) -> status.setFace(Face.C),
                     Face.C, (status) -> status.setFace(Face.E)
             );
-    private static final Map<Movement, Map<Face, Consumer<Status>>> OPERATIONS =
+    private static final Map<Movement, Map<Face, Consumer<SpacialProbe>>> OPERATIONS =
             Map.of(
                     Movement.GE, TURN_LEFT_OPERATION,
                     Movement.GD, TURN_RIGHT_OPERATION,
                     Movement.M, FORWARD_OPERATION
             );
-    private static final Map<Movement, Function<Status, String>> TRACER_MESSAGE =
+    private static final Map<Movement, Function<SpacialProbe, String>> TRACER_MESSAGE =
             Map.of(
                     Movement.GE, (status) -> "girou para a esquerda",
                     Movement.GD, (status) -> "girou para a direita",
                     Movement.M, (status) -> "se moveu no eixo " + status.getFace().getAxis()
             );
 
-    private static Status CURRENT;
+    private static SpacialProbe CURRENT;
 
     public SpacialProbeService() {
         sendToTheBeginning();
@@ -73,7 +73,7 @@ public class SpacialProbeService {
         CURRENT = result;
     }
 
-    private void apply(Movement movement, Status status) {
+    private void apply(Movement movement, SpacialProbe status) {
         var operationDependsOnMovement = OPERATIONS.get(movement);
         var operationDependsOnFace = operationDependsOnMovement.get(status.getFace());
 
@@ -81,7 +81,7 @@ public class SpacialProbeService {
         status.getTrace().add(TRACER_MESSAGE.get(movement).apply(status));
     }
 
-    public Status getCurrent() {
+    public SpacialProbe getCurrent() {
         return CURRENT;
     }
 
@@ -90,7 +90,7 @@ public class SpacialProbeService {
     }
 
     private void sendToTheBeginning() {
-        CURRENT = Status.INITIAL;
+        CURRENT = SpacialProbe.INITIAL;
     }
 
 }
