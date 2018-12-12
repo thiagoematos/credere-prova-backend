@@ -22,7 +22,7 @@ public class SpacialProbeController {
         return service.getCurrent();
     }
 
-    @PostMapping
+    @PutMapping
     public void move(@RequestBody Movements movements, HttpServletResponse response) throws IOException {
         try {
             service.move(movements);

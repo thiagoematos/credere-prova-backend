@@ -46,7 +46,7 @@ public class SpacialProbeTest {
 
         // when
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(movements))
 
@@ -61,7 +61,7 @@ public class SpacialProbeTest {
 
         // when
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(objectMapper.writeValueAsString(movements)))
 
@@ -82,7 +82,7 @@ public class SpacialProbeTest {
 
         //when
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(objectMapper.writeValueAsString(movements)))
 
@@ -102,7 +102,7 @@ public class SpacialProbeTest {
 
         // when
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(objectMapper.writeValueAsString(movements)))
                 .andExpect(status().isOk());
@@ -127,7 +127,7 @@ public class SpacialProbeTest {
 
         // when
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(objectMapper.writeValueAsString(movements)))
                 .andExpect(status().isOk());
@@ -151,7 +151,7 @@ public class SpacialProbeTest {
         );
 
         this.mvc.perform(
-                post("/posicao")
+                put("/posicao")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(objectMapper.writeValueAsString(movements)))
                 .andExpect(status().isOk());
