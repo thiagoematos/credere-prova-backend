@@ -55,7 +55,7 @@ public class SpacialProbeService {
         sendToTheBeginning();
     }
 
-    public void move(Movements movements) throws InvalidMovementException {
+    public SpacialProbe move(Movements movements) throws InvalidMovementException {
         var result = CURRENT.copy();
 
         movements
@@ -71,6 +71,8 @@ public class SpacialProbeService {
                 .log();
 
         CURRENT = result;
+
+        return result;
     }
 
     private void apply(Movement movement, SpacialProbe status) {

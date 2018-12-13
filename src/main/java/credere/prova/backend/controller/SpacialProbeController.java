@@ -28,12 +28,13 @@ public class SpacialProbeController {
 
     @ApiOperation(value = "Faz a sonda movimentar-se.")
     @PutMapping
-    public void move(@RequestBody Movements movements, HttpServletResponse response) throws IOException {
+    public SpacialProbe move(@RequestBody Movements movements, HttpServletResponse response) throws IOException {
         try {
-            service.move(movements);
+            return service.move(movements);
         } catch (InvalidMovementException e) {
             response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, e.getMessage());
         }
+        return null;
     }
 
     @ApiOperation(value = "Volta a sonda para a posição inicial.")
