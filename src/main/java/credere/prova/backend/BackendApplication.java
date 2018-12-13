@@ -15,6 +15,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class BackendApplication {
 
     public static void main(String[] args) {
+        var ENV_PORT = System.getenv().get("PORT");
+        var ENV_DYNO = System.getenv().get("DYNO");
+        if(ENV_PORT != null && ENV_DYNO != null) {
+            System.getProperties().put("server.port", ENV_PORT);
+        }
         SpringApplication.run(BackendApplication.class, args);
     }
 
