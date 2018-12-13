@@ -9,18 +9,18 @@ import static java.lang.String.join;
  */
 public interface Sentence {
 
-    static String format(List<String> str) {
+    static String format(List<String> words) {
         int indexOfFirst = 0;
-        if (str.size() > 1) {
-            int indexOfLast = str.size() - 1;
+        if (words.size() > 1) {
+            int indexOfLast = words.size() - 1;
 
-            var everythingExceptLast = join(", ", str.subList(indexOfFirst, indexOfLast));
-            var last = str.get(indexOfLast);
+            var everythingExceptLast = join(", ", words.subList(indexOfFirst, indexOfLast));
+            var last = words.get(indexOfLast);
 
             return String.format("%s e %s", everythingExceptLast, last);
         }
-        if (str.size() == 1) {
-            return str.get(indexOfFirst);
+        if (words.size() == 1) {
+            return words.get(indexOfFirst);
         }
         return "";
     }
